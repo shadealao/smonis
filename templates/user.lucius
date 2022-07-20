@@ -1,0 +1,40 @@
+@userIdWidth: 45px;
+@userNameWidth:200px;
+@userEmailWidth: 220px;
+@userRoleWidth: 120px;
+@userActiveWidth: 120px;
+@userDateWidth: 130px;
+@userUserWidth: 140px;
+
+
+.user-id { width: #{userIdWidth} }
+.user-id, .user-name, .user-active, .user-date, .user-user {
+    padding-right: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-name { width: #{userNameWidth} }
+
+.user-email { width: #{userEmailWidth} }
+.user-email {
+    flex-grow: 1;
+    -webkit-flex-grow: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-right: 4px;
+}
+
+.user-role { width: #{userRoleWidth}; }
+
+.user-active { width: #{userActiveWidth}; }
+
+.user-date {
+    width: #{userDateWidth};
+    font-size: smaller;
+    margin-top: 2px;
+}
+
+.user-user { width: #{userUserWidth}; }
+

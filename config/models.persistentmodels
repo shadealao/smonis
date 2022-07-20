@@ -1,0 +1,114 @@
+-- By default this file is used by `persistFileWith` in Model.hs (which is imported by Foundation.hs)
+-- Syntax for this file here: https://github.com/yesodweb/persistent/blob/master/docs/Persistent-entity-syntax.md
+
+User json
+    name Text
+    email Text
+    settings Textarea Maybe
+    password Text Maybe
+    verkey Text Maybe
+    verified Bool
+    active Bool
+    role Text
+    created UTCTime default=CURRENT_TIMESTAMP Maybe
+    creatorId UserId Maybe
+    updated UTCTime default=CURRENT_TIMESTAMP Maybe
+    lastUpdatorId UserId Maybe
+    UniqueUser email
+    deriving Typeable
+    deriving Show
+    deriving Eq
+    deriving Ord
+
+
+
+Project json
+    name Text
+    description Textarea
+    active Bool
+    created UTCTime default=CURRENT_TIMESTAMP Maybe
+    creatorId UserId Maybe
+    updated UTCTime default=CURRENT_TIMESTAMP Maybe
+    lastUpdatorId UserId Maybe
+    UniqueProject name
+    deriving Typeable
+    deriving Show
+    deriving Eq
+    deriving Ord
+
+Eleve json 
+    idUser UserId
+    nom Text 
+    heureRestantes Int
+    created UTCTime default=CURRENT_TIMESTAMP Maybe
+    creatorId UserId Maybe
+    updated UTCTime default=CURRENT_TIMESTAMP Maybe
+    lastUpdatorId UserId Maybe
+    UniqueEleve idUser
+    deriving Typeable
+    deriving Show
+    deriving Eq
+    deriving Ord
+
+
+Enseignant json 
+    idUser UserId
+    nom Text
+    created UTCTime default=CURRENT_TIMESTAMP Maybe
+    creatorId UserId Maybe
+    updated UTCTime default=CURRENT_TIMESTAMP Maybe
+    lastUpdatorId UserId Maybe
+    UniqueEnseignant idUser
+    deriving Typeable
+    deriving Show
+    deriving Eq
+    deriving Ord
+
+
+Creneaux json 
+    dateCreneaux Day
+    heureCreneauxDebut Text Maybe -- UTCTime default=CURRENT_TIMESTAMP Maybe --TIMESTAMP -- UTCTime --TimeOfDay
+    heureCreneauxFin Text Maybe -- UTCTime default=CURRENT_TIMESTAMP Maybe --TIMESTAMP -- UTCTime --TimeOfDay
+    active Bool
+    created UTCTime default=CURRENT_TIMESTAMP Maybe
+    creatorId UserId Maybe
+    updated UTCTime default=CURRENT_TIMESTAMP Maybe
+    lastUpdatorId UserId Maybe
+    deriving Typeable
+    deriving Show
+    deriving Eq
+    deriving Ord
+
+
+Cours json 
+    idCreneaux CreneauxId
+    idEnseignant EnseignantId Maybe
+    idEleve EleveId
+    effectue Bool
+    created UTCTime default=CURRENT_TIMESTAMP Maybe
+    creatorId UserId Maybe
+    updated UTCTime default=CURRENT_TIMESTAMP Maybe
+    lastUpdatorId UserId Maybe
+    UniqueCours idCreneaux
+    deriving Typeable
+    deriving Show
+    deriving Eq
+    deriving Ord
+
+
+
+Produit json 
+    nom Text
+    prix Double
+    description Textarea Maybe
+    created UTCTime default=CURRENT_TIMESTAMP Maybe
+    creatorId UserId Maybe
+    updated UTCTime default=CURRENT_TIMESTAMP Maybe
+    lastUpdatorId UserId Maybe
+    UniqueProduit nom prix
+    deriving Typeable
+    deriving Show
+    deriving Eq
+    deriving Ord
+
+    

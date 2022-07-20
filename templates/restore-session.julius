@@ -1,0 +1,8 @@
+$(function() {
+    // delete newExperiment from the server session and redirect to Experiment
+    function requestDeleteNewHistoriqueProprietaireFromServerSessionAndRedirectToExperiment() {
+        $.panier.requestDeleteStoreSession("newProduit")
+        
+    }
+    requestDeleteNewHistoriqueProprietaireFromServerSessionAndRedirectToExperiment() 
+})

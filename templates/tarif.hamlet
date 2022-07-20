@@ -1,0 +1,9 @@
+
+<div .col-lg-6.col-lg-offset-3>
+    <h3 .text-center>Les packs proposés : 
+    <article>
+        ^{showListProduitEleve} 
+       
+
+                            
+                

@@ -1,0 +1,9 @@
+#pageprofil {
+    background-color : #ededed;
+    border-radius: 8px;
+    box-shadow: 3px 2px 2px #000000b3;
+    margin: auto;
+    padding: 25px;
+    margin-top: 8%;
+    width: 400px;
+}

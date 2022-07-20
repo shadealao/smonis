@@ -1,0 +1,45 @@
+$(function() {
+
+   var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = window.location.search.substring(1),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return typeof sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+            }
+        }
+        return false;
+    };
+    var id = ''
+    var nom = ''
+    var prix = ''
+    $('.ajouterpanier').click(function() {
+        id = $(this).val()
+        nom = $(this).attr("nom")
+        prix = $(this).attr("prix")
+        alert('id:' + id+ '   nom:'+nom+'   prix:'+prix)
+        storeNewAddProduitToPanier();       
+    });
+
+    function storeNewAddProduitToPanier() {
+        var newProduit = {
+            id: id,
+            nom: nom,
+            prix: prix
+        };
+        $.listeproduit.push(newProduit)
+        console.log($.listeproduit);
+        // store session and redirect
+        $.panier.requestPutStoreSession("newProduit", $.listeproduit);
+    }
+
+    
+    
+    
+   
+});

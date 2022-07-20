@@ -1,0 +1,17 @@
+
+<div .col-lg-6.col-lg-offset-3>
+    <h3 .text-center>Ajouter / modifier un Crénaux
+    <article>
+        ^{showListCreneaux}
+    <article .jumbotron .col-lg-12>
+        <form method=post action=@{CreneauxR} enctype=#{enctype0}>
+            ^{widget0}
+            $maybe idcreneaux <- creneauxid
+                <div hidden  #divhidden>
+                    <input name=creneauxid value=#{idcreneaux}  type="text" .form-control>
+                
+            <button .col-lg-2.col-lg-offset-3 type=submit .btn .btn-success>_{MsgValider}
+        
+
+                            
+                

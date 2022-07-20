@@ -1,0 +1,54 @@
+
+<!-- Static navbar -->
+    <div>
+        <nav  .navbar.navbar-default.navbar-static-top>
+            <div .container >
+                <div .navbar-header>
+                    <button type="button" .navbar-toggle.collapsed data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation
+                        <span class="icon-bar">
+                        <span class="icon-bar">
+                        <span class="icon-bar">
+                <div #navbar .collapse.navbar-collapse .fs-4>
+                    <ul .nav.navbar-nav .list-group-horizontal>
+                        $forall MenuItem label route _ <- navbarLeftFilteredMenuItems
+                            <li :Just route == mcurrentRoute:.active>
+                                <a href="@{route}">#{label}
+                    <ul .nav.navbar-nav.navbar-right .list-group-horizontal>
+                        $forall MenuItem label route _ <- navbarRightFilteredMenuItems
+                            <li :Just route == mcurrentRoute:.active>
+                                <a href="@{route}">#{label}
+
+<!-- Page Contents 
+
+<div .container>
+    $if not $ Just HomeR == mcurrentRoute
+        <ul .breadcrumb>
+            $forall bc <- parents
+                <li>
+                    <a href="@{fst bc}">#{snd bc}
+
+            <li .active>#{title}
+
+    $maybe msg <- mmsg
+      <div .alert.alert-info #message>#{msg}
+
+-->
+$maybe msg <- mmsg
+    <!--div class="alert alert-info alert-dismissible bg-success fade show"  #message style="background-color: blue;, color= red; z-index:999"role="alert">#{msg} -->
+    <div class="alert alert-info"  #message role="alert">#{msg}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;
+
+$if (Just HomeR == mcurrentRoute)
+    ^{widget}
+$else
+    <div .container .contenu>
+        ^{widget}
+                 
+<!-- Footer -->
+<footer .footer >
+    <div .position-relative>
+        <div .container class="position-absolute top-50 start-0">
+            <p .text-muted .fs-5>
+                #{appCopyright $ appSettings master}

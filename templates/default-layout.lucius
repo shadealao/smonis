@@ -1,0 +1,473 @@
+.masthead, .navbar {
+    background-color: rgb(27, 28, 29);
+}
+
+.navbar-default .navbar-nav > .active > a {
+    background-color: transparent;
+    border-bottom: 2px solid white;
+}
+
+.navbar-nav > li > a {
+    padding-bottom: 5px;
+}
+
+.navbar-right {
+    margin-right: 0px;
+}
+
+.masthead {
+    /*margin-top: -1px;*/
+    color: white;
+    text-align: center;
+    height: calc(100vh - 100px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+
+@media (max-width: 768px) {
+    .masthead {
+        padding-top: 5vh;
+        display: block;
+    }
+    
+    .masthead #partenaire img {
+        margin : 0px 0px;
+    }
+    #navbar {
+        z-index: 5;
+        position: absolute;
+        background-color: rgb(7 9 12 / 80%);
+        width: 100vh;
+    }
+    .jumbotron {
+        max-height: 50vmax;
+        overflow-y: auto;
+    }
+    .box-inner {
+        width: 89vw;
+    }
+    .contenu {
+        height: 85vh;
+    }
+
+
+}
+.masthead .imglogo {
+    
+    background-repeat: round;
+    height: 115px;
+    width: 600px;
+    align-self: center;
+}
+
+ .masthead #partenaire {
+    align-self: center;
+    position: absolute;
+    bottom: 7vh;
+}
+@media (min-width: 769px) {
+    
+    .masthead #partenaire img {
+        margin : 0px 45px;
+    }
+    .box-inner {
+        width: 30vw;
+    }
+    .contenu {
+        height: 89vh;
+    }
+}
+
+
+.masthead .header {
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+}
+
+.masthead h1.header {
+    font-size: 4.5em;
+    line-height: 1.2em;
+    font-weight: normal;
+}
+
+.footer {
+    margin-top: 0px;
+    padding-top: 8px;
+    border-top: 1px solid black;
+}
+
+/* Space things out */
+#message {
+    margin-bottom: 40px;
+}
+
+/* ------------------------------------------------------------ */
+
+/* for scroolbar */
+::-webkit-scrollbar
+{
+  width: 12px;  /* for vertical scrollbars */
+  height: 12px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track
+{
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb
+{
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* ----------------------------------------- */
+/* for all templates table with action icons */
+@actionIconWidth: 50px;
+
+.element-name-inline, .element-name-inline:hover, .element-name-inline:active, .element-name-inline:focus {
+    color: inherit;
+}
+
+.action-icon { width: #{actionIconWidth}; }
+.action-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.action-icon span {
+    margin-bottom: 5px;
+}
+
+.action-icon a, .action-icon button {
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.action-icon button {
+    border: 0px;
+    background-color: transparent;
+}
+
+.action-label-inline.btn {
+    margin: 1px 0px 2px 0px;
+    padding: 1px 8px 0px 8px;
+}
+
+.action-icon-inline {
+    margin: 3px 3px 0px 0px;
+    padding: 0px;
+    border: 0px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.action-icon-inline:hover, .action-icon-inline:active, .action-icon-inline:focus  {
+    text-decoration: underline;
+}
+
+.col-menu .action-icon-inline {
+    margin: 0px 0px 0px 0px;
+}
+
+.action-delete:hover, .action-delete:active, .action-delete:focus  {
+    color: brown;
+}
+
+.action-delete {
+    color: brown;
+}
+
+ul.menu-display-columns.dropdown-menu  {
+    min-width: 170px;
+}
+
+ul.menu-display-columns li {
+    cursor: pointer;
+}
+
+li .column-header {
+    margin: 10px;
+}
+
+li .action-icon-inline {
+    float: right;
+    padding-right: 10px;
+}
+
+.col-menu {
+    min-width: 20px;
+}
+
+.table-body { /* layout */
+    height: calc(100vh - 256px);
+    overflow-y: auto;
+    min-height: 100px;
+}
+
+.column-header, .row-header {
+    color: darkcyan;
+}
+
+.row-header {
+    margin: 2px 10px 0px 80px;
+}
+
+.table-row.table-row-to-extend {
+    border-bottom: none;
+}
+
+.table-row {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-wrap: no-wrap;
+    -webkit-flex-wrap: no-wrap;
+    width: 100%;
+    padding-right: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-top: 2px;
+}
+
+.table-row-container {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-wrap: no-wrap;
+    -webkit-flex-wrap: no-wrap;
+    padding-left: 20px;
+    padding-top: 2px;
+}
+
+.table-row-elem-list {
+
+}
+
+.elem-inline-list {
+    flex-flow: wrap;
+}
+
+/* status for lines selections */
+.action-selectable.item-not-active {
+    background-color: #d8e3e1;
+}
+
+.action-selected.item-not-active {
+    background-color: #18bc9c;
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, #d8e3e1 35px, #d8e3e1 70px);
+
+}
+
+/* actions for lines selections */
+.action-selectable:hover, .action-selectable:active, .action-selectable:focus {
+    border: solid 1px #18bc9c;
+    border-radius: 10px;
+}
+
+.action-selected {
+    border-radius: 15px;
+    background-color: #18bc9c;
+}
+
+/* for bootstrap tooltip */
+.tooltip-inner {
+    text-align: start;
+    max-width: 500px;
+    padding: 8px 10px 8px 10px;
+}
+
+.tooltip-inner ul {
+    padding: 0px 0px 0px 14px;
+    margin-bottom: 0px;
+}
+
+/* ------------------------------------------------------------ */
+/* for all templates buttons to go to another page */
+a.btn-outline {
+    border: 1px solid #18bc9c;
+    margin: 10px;
+    padding: 6px 15px;
+}
+
+a.btn-outline:hover, a.btn-outline:focus {
+    color: #128f76;
+    border-color: #11866f;
+}
+
+/* ------------------------------------------------------------ */
+/* look overwriting bootstrap */
+.btn {
+    padding: 6px 15px;
+}
+
+label {
+    font-weight:inherit;
+}
+
+/* ------------------------------------------------------------ */
+/* form submit button */
+input[type="submit"] {
+    color: #ffffff;
+    background-color: #18bc9c;
+    border-color: #18bc9c;
+    padding: 6px 15px;
+}
+
+input[type="submit"]:hover, input[type="submit"]:focus {
+    background-color: #128f76;
+    border-color: #11866f;
+}
+
+/* ------------------------------------------------------------ */
+/* for form control */
+input, textarea {
+    border: 1px solid silver;
+    border-radius: 4px;
+    padding: 2px 10px;
+    box-shadow: none;
+    margin: 5px 10px;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    margin: 10px 5px 6px 20px;
+}
+
+select {
+    margin: 5px 10px;
+}
+/*
+.field {  layout 
+    overflow-y: auto;
+    height: calc(100vh - 213px);
+    min-height: 100px;
+}*/
+
+.field-text input {
+    width: 400px;
+}
+
+.field-day input {
+    width: 150px;
+}
+
+.field-number input {
+    width: 100px;
+}
+
+.field-textarea {
+    display: flex;
+    align-items: center;
+}
+
+.field-textarea textarea {
+    flex: 1 1 auto;
+}
+
+/* the parent div of .aligned-radio */
+.field-aligned-radio {
+    display: flex;
+}
+
+.field-aligned-radio > label {
+    align-self: end;
+}
+
+/* ------------------------------------------------------------ */
+/* global layout */
+.container {
+    width: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.contenu {
+    position: relative;
+    overflow: auto;
+    font-size: 17px;
+}
+
+.vertical-center {
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.alert-info {
+    position:fixed;
+    z-index: 999;
+    width: 100vw;
+    /*position:absolute;
+    z-index:3 ;
+    weight:100%;
+    */
+}
+
+.glyphicon-plus {
+    padding : 0px 2px;
+    border-width: 0px
+}
+
+input[type="radio"], input[type="checkbox"] {
+    margin: 0px 0px 11px 0px;
+}
+
+
+/*
+#emailLoginForm {
+    background-color : #ededed;
+    border-radius: 8px;
+    box-shadow: 3px 2px 2px #000000b3;
+    margin: auto;
+    padding: 25px;
+    margin-top: 8%;
+    width: 400px;
+}
+*/
+
+.box-inner {
+    background-color : #ededed;
+    border-radius: 8px;
+    box-shadow: 3px 2px 2px #000000b3;
+    margin: auto;
+    padding: 25px;
+    margin-top: 8%;
+}
+/*
+.box-inner input {
+    margin: 5px 0px;
+}*/
+
+.list-group-horizontal li a {
+    text-decoration: none;    
+}
+
+.breadcrumb li a, .breadcrumb li {
+    font-size: 13px;
+    text-decoration: none;
+    color: #cccccc;
+}
+
+.form-inline {
+   /*height: 50px;*/
+}
+#proprietairename, #proprietairename-select, #source, #precisionsource, #fournisseurtoile, #fournisseurchassis, #auteur, #materiaux, #outil, #vernis, #lieu-select, #autrelieu, #nomexposition {
+    width : 85%;
+    display: inline-block;
+}
+
+
+html, body {
+    height: 100%;
+}
+
+/*
+.ui {
+    position: relative;
+    height: 83vh;
+}*/

@@ -1,0 +1,55 @@
+<div >
+    
+    <div ##{userListId}>
+        <div .table-row .column-headers>
+            <div .col-0 .column-header .user-id>Id
+            <div .colref .col-2 .column-header .user-name>Name
+            <div .colref .col-2 .column-header .user-email>Email
+            <div .colref .col-1 .column-header .user-active>Active
+            <div .colref .col-1 .column-header .user-role>Role
+            <div .colref .col-1 .column-header .user-date>Created
+            <div .colref .col-1 .column-header .user-user>Creator
+            <div .colref .col-1 .column-header .user-date>Updated
+            <div .colref .col-1 .column-header .user-user>Updator
+            <div .col .column-header .action-icon>Edit
+            <div .col .column-header .action-icon>Delete
+        <div .table-body>
+            
+            $forall (Entity recordId record, creator, lastUpdator) <- allUsers
+                <div id="#{toPathPiece $ recordId}" .table-row>
+                    <div .col-0 .user-id>#{toPathPiece $ recordId}
+                    $with aValue <- userName $ record
+                        <div .col-2 .user-name>
+                            <span data-toggle="tooltip" data-placement="bottom" title=#{aValue}>#{aValue}
+                    $with aValue <- userEmail $ record
+                        <div .col-2 .user-email>
+                            <span data-toggle="tooltip" data-placement="bottom" title=#{aValue}>#{aValue}
+                    <div .col-1 .user-active>#{userActive $ record}
+                    $with aValue <- userRole $ record
+                        <div .col-1 .user-role>
+                            <span data-toggle="tooltip" data-placement="bottom" title=#{aValue}>#{aValue}
+                    $with aValue <- dateFormat (userCreated $ record)
+                        <div .col-1 .user-date>
+                            <span .to-locale-date data-toggle="tooltip" data-placement="bottom" title=#{aValue}>#{aValue}
+                    $with aValue <- fromMaybe "-" (unSingle <$> creator)
+                        <div .col-1 .user-user>
+                            <span data-toggle="tooltip" data-placement="bottom" title=#{aValue}>#{aValue}
+                    $with aValue <- dateFormat (userUpdated $ record)
+                        <div .col-1 .user-date>
+                            <span .to-locale-date data-toggle="tooltip" data-placement="bottom" title=#{aValue}>#{aValue}
+                    $with aValue <- fromMaybe "-" (unSingle <$> lastUpdator)
+                        <div .col-1 .user-user>
+                            <span data-toggle="tooltip" data-placement="bottom" title=#{aValue}>#{aValue}
+
+                    $with aValue <- userName $ record
+                        <div .col .action-icon>
+                            <a href="@{EditUserR $ recordId}" .glyphicon .glyphicon-edit data-toggle="tooltip" data-placement="bottom" title="Edit #{aValue}">
+                                
+                        $with entity <- fromJust maybeCurrentUserId
+                            $if (toPathPiece $ recordId) == ((toPathPiece entity))
+                                <div .col .action-icon>
+                            $else 
+                                <div .col .action-icon>
+                                    <a forentity="#{toPathPiece $ recordId}" .action-delete .action-user-delete .glyphicon .glyphicon-trash tabindex="0" data-toggle="tooltip" data-placement="bottom" title="Delete #{aValue}">
+    <div>
+        <a href="@{CreateUserR}" .btn .btn-outline>Create new user

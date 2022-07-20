@@ -1,0 +1,10 @@
+<div .ui.container>
+    <div #user>
+        <form .form-horizontal ##{editUserFormId} method=get enctype=#{enctype}>
+            <div .field>
+                ^{widget}
+            <div .btn-section>
+                <button .btn.btn-success type=submit>
+                    Save changes
+                <a href="@{UserR}##{toPathPiece $ uid}" .btn.btn-default>
+                    Cancel changes

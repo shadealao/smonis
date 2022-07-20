@@ -1,0 +1,84 @@
+$(function() {
+
+    /* namespace */
+    if ($.ipanema === undefined) {
+        $.ipanema = {};
+    }
+
+
+    if ($.panier === undefined) {
+        $.panier = {};
+    }
+    // get url 
+    //Ajouter un id aux pages login et modif mdp
+    function getNamePage( sPageURL) {
+        var sPath = sPageURL.split('/');
+
+        for (i = 0; i < sPath.length; i++) {
+            if (sPath[i].normalize() === 'auth'.normalize()) {
+                $('.contenu').children('h3').addClass('text-center');
+                $('.contenu').children('form').addClass('box-inner row');
+                $('.contenu').children('p').addClass('text-center').css("margin-top", "2%");
+                var btnregister= $('#registerForm').next().addClass('btn-success');
+                $(btnregister).after('<a #registercancel href="'+location.protocol + '//' + location.host +'/auth/login" type=button class="btn btn-default">Cancel</a>')
+                
+                //$('.contenu').children().addClass('box-inner row');
+                //$('.contenu').children().removeClass( "row" ).addClass('box-inner card card-text bg-light');
+                //$('#registerForm').children().removeClass( "btn" ).addClass('btn btn-secondary');
+            }
+        }
+    };
+    
+    getNamePage(location.pathname)
+
+    // ------------- function definition --------------- //
+
+    // function Date Format
+    $.panier.convertToLocalDatetimeString = function(utcString) {
+        var theDate = new Date(utcString);
+        if (theDate === NaN) {
+            return utcString;
+        }
+
+        // using lib moment.js
+        return moment(theDate).format("YYYY/MM/DD HH:mm:ss");
+
+        // Without using lib moment.js 
+        // The display is "Mon Aug 26 2019 14:31:42 GMT+0200 (CEST)"
+        // return theDate.toString();
+    }
+
+    // ------------- event binding --------------- //
+    // Nothing
+
+    // ------------- executed now ----------------- //
+    // lib Moment.js for date format: moment-with-locales.min.js
+    moment().format();
+    $(".to-locale-date").each(function( index ) {
+        var theHtml = $(this).html();
+        if (theHtml != "") {
+            var localDatetime = $.panier.convertToLocalDatetimeString(theHtml); 
+            $(this).html(localDatetime);
+            $(this).attr("title", localDatetime);
+        }
+    });
+    
+    // Tooltip de Bootstrap
+    $('[data-toggle="tooltip"]').tooltip();
+
+    //Faire disparaitre les alert 
+    $(".alert-info").hide(10000)
+
+    $('select[name=precisionsource]').after('<span id="btnplusprecisionsource" class="col-1 save"></span>');
+    $("<button>").attr("type", "button")
+        .attr("data-toggle", "modal")
+        .attr("data-target", "#tablePrecisionSource")
+        .attr("id", "addprecisionsource")
+        .addClass("glyphicon")
+        .addClass("glyphicon-plus")
+        .addClass("btn")
+        .addClass("btn-success")
+        .appendTo($('#btnplusprecisionsource'));
+
+});
+

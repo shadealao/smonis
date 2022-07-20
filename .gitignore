@@ -1,0 +1,15 @@
+*~
+.stack-work
+.DS_Store
+._*
+stack.yaml.lock
+dist-newstyle
+static/tmp
+static/img
+templates/brouillon.*
+yesod-devel
+*.aes
+*.db3
+*.sqlite3
+.vscode
+exportmib.pgsql

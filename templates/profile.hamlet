@@ -1,0 +1,11 @@
+<!-- div .ui -->
+  <div #pageprofil>
+    <h1>
+      Access granted!
+
+    <p>
+      Your data is protected with us <strong><span class="username">#{userEmail user}</span></strong>!
+
+    <div>
+        <a href="@{AuthR setpassR}" .btn .btn-outline>Change password
+

@@ -1,0 +1,11 @@
+<div .ui.container>
+    <div #create-user>
+        <form .form-horizontal ##{createUserFormId} method=get enctype=#{enctype} >
+            <h3 .text-center>New user
+            <div .field>
+                ^{widget}
+            <div .btn-section>
+                <button .btn.btn-success type=submit>
+                    Create user
+                <a href="@{UserR}" .btn.btn-default>
+                    Cancel changes

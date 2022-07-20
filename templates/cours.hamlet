@@ -1,0 +1,17 @@
+
+<div .col-lg-6.col-lg-offset-3>
+    <h3 .text-center>Réserver un créneaux
+    
+    $maybe (Entity recordId record) <- eleveid
+        <article>
+            $if (eleveHeureRestantes record) < 1
+                    <p>
+                        <a href=#>Veuillez souscrire à un forfait pour pouvoir voir les disponibilités
+            $else 
+                ^{showListCreneauxActive}
+        <article>
+            <h4>Mes prochains cours
+            ^{showListCoursFromEleve recordId}
+        
+                            
+                

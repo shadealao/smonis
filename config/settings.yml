@@ -1,0 +1,54 @@
+# Values formatted like "_env:YESOD_ENV_VAR_NAME:default_value" can be overridden by the specified environment variable.
+# See https://github.com/yesodweb/yesod/wiki/Configuration#overriding-configuration-values-with-environment-variables
+
+static-dir:     "_env:YESOD_STATIC_DIR:static"
+host:           "_env:YESOD_HOST:*4" # any IPv4 host
+port:           "_env:YESOD_PORT:3000" # NB: The port `yesod devel` uses is distinct from this value. Set the `yesod devel` port from the command line.
+ip-from-header: "_env:YESOD_IP_FROM_HEADER:false"
+# ip-from-header: "_env:YESOD_IP_FROM_HEADER:true" # see https://stackoverflow.com/questions/64275919/nginx-reverse-proxy-to-yesod-forwarded-ip-address-does-not-work
+
+# Default behavior: determine the application root from the request headers.
+# Uncomment to set an explicit approot
+approot:        "_env:YESOD_APPROOT:http://localhost:3000"
+# approot:         "_env:YESOD_APPROOT:https://ta.ipanema-remote.fr/black"
+
+## Temporary, maybe useful later on :
+client-session-kf:  "_env:YESOD_CLIENT_SESSION_KF:config/client_session_key.aes"
+
+# By default, `yesod devel` runs in development, and built executables use
+# production settings (see below). To override this, use the following:
+#
+# development: false
+
+# Optional values with the following production defaults.
+# In development, they default to the inverse.
+#
+# detailed-logging: false
+# should-log-all: false
+# reload-templates: false
+# mutable-static: false
+# skip-combining: false
+# auth-dummy-login : false
+
+# NB: If you need a numeric value (e.g. 123) to parse as a String, wrap it in single quotes (e.g. "_env:YESOD_PGPASS:'123'")
+# See https://github.com/yesodweb/yesod/wiki/Configuration#parsing-numeric-values-as-strings
+
+
+# OLD SQLITE
+# database:
+#   # See config/test-settings.yml for an override during tests
+#   database: "_env:YESOD_SQLITE_DATABASE:autoecole-smoni.sqlite3"
+#   poolsize: "_env:YESOD_SQLITE_POOLSIZE:10"
+# NEW POSTGRESQL
+database:
+  user:     "_env:YESOD_PGUSER:smoni" 
+  password: "_env:YESOD_PGPASS:smoni"
+  host:     "_env:YESOD_PGHOST:127.0.0.1"
+  port:     "_env:YESOD_PGPORT:5432"
+  # See config/test-settings.yml for an override during tests
+  database: "_env:YESOD_PGDATABASE:smoni_prod"
+  poolsize: "_env:YESOD_PGPOOLSIZE:10"
+
+
+copyright: copyright Auto-école SMONI 2022
+#analytics: UA-YOURCODE

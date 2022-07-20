@@ -1,0 +1,154 @@
+$(function() {
+
+   var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = window.location.search.substring(1),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return typeof sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+            }
+        }
+        return false;
+    };
+    
+    requestNewAddProduitToPanierFromServerSession()
+    
+    // Get the newExperiment as json on the server session and finish the building and filling of the form
+    function requestNewAddProduitToPanierFromServerSession() {
+        // --- local functions ---
+        // local function Promise to fill AddAlteration Simple Attributes
+        function fillAddProduitSimpleAttr(data) {
+            return new Promise((resolve, reject) => {
+                console.log ("START fillAddAlterationAttr");
+                if (data !== null) {
+                    console.log('restore data :'+JSON.stringify(data, null, 4))
+                    newdata = findOcc ( data,"id")
+                    affichehtmlpanier(newdata)
+                }
+
+
+
+                resolve(data);
+           })
+        }
+        
+       
+        // in parallel getting and filling experiment samples
+        $.panier.requestGetStoreSession("newProduit")
+            .then(fillAddProduitSimpleAttr)
+        
+        
+    }
+    
+    function affichehtmlpanier(liste){
+        if(liste !== null){
+            total = 0
+            for(i=0; i<liste.length ; i++){
+                total += liste[i].occurrence * liste[i].value.prix
+                $('<tr>')
+                        .attr('id', 'ligne'+liste[i].id)
+                        .addClass('col-12')
+                        .appendTo($('#listeproduit'))
+                    $("<td>")
+                        .addClass('col-2')
+                        .html(liste[i].occurrence)
+                        .appendTo($('#ligne'+liste[i].id));
+                    $("<td>")
+                        .addClass('col')
+                        .html(liste[i].value.nom)
+                        .appendTo($('#ligne'+liste[i].id));
+                    $("<td>")
+                        .addClass('col')
+                        .html(liste[i].value.prix)
+                        .appendTo($('#ligne'+liste[i].id));
+                
+            }
+            $("<td>")
+                .html(total+'€')
+                .appendTo($('#total'));
+        }
+        
+    }
+    function affichehtmlpanier2(liste){
+        if(liste !== null){
+            console.log('long ==>'+ liste.length)
+            console.log('long [0] ==>'+ liste[0].value.nom)
+            console.log('liste[0] ==>'+ JSON.stringify(liste[0].id, null, 4))
+            console.log('liste[1] ==>'+ JSON.stringify(liste[1], null, 4))
+            console.log('liste.occurrence ==>'+ JSON.stringify(liste[0].occurrence, null, 4))
+            for(i=0; i<liste.length ; i++){
+                
+                $('<tr>')
+                        .attr('id', 'ligne'+liste[i].id)
+                        .addClass('col-12')
+                        .appendTo($('#listeproduit'))
+                    $("<td>")
+                        .addClass('col-2')
+                        .html(liste[i].occurrence)
+                        .appendTo($('ligne'+liste[i].id));
+                    $("<td>")
+                        .addClass('col')
+                        .html(liste[i].value.nom)
+                        .appendTo($('ligne'+liste[i].id));
+                    $("<td>")
+                        .addClass('col')
+                        .html(liste[i].value.prix)
+                        .appendTo($('ligne'+liste[i].id));
+                
+            }
+        }
+        
+    }
+    var res = function listefinale(myArray){
+        
+            let counter = {};
+            for (element of myArray.flat()) {
+                if (counter[element]) {
+                    counter[element] += 1;
+                } else {
+                    counter[element] = 1;
+                }
+            };
+            console.log("counter==> "+JSON.stringify(counter, null, 4));
+   
+        return (counter)
+    }
+
+
+
+    function findOcc(arr, key){
+  let arr2 = [];
+    
+  arr.forEach((x)=>{
+       
+    // Checking if there is any object in arr2
+    // which contains the key value
+     if(arr2.some((val)=>{ return val[key] == x[key] })){
+         
+       // If yes! then increase the occurrence by 1
+       arr2.forEach((k)=>{
+         if(k[key] === x[key]){ 
+           k["occurrence"]++
+         }
+      })
+         
+     }else{
+       // If not! Then create a new object initialize 
+       // it with the present iteration key's value and 
+       // set the occurrence to 1
+       let a = {}
+       a[key] = x[key]
+       a["occurrence"] = 1
+       a["value"] = x
+       arr2.push(a);
+     }
+  })
+    
+  return arr2
+}
+});

@@ -1,0 +1,17 @@
+
+<div .col-lg-6.col-lg-offset-3>
+    <h3 .text-center>Ajouter / modifier un produit
+    <article>
+        ^{showListProduit}
+    <article .jumbotron .col-lg-12>
+        <form method=post action=@{ProduitR} enctype=#{enctype0}>
+            ^{widget0}
+            $maybe idproduit <- produitid
+                <div hidden  #divhidden>
+                    <input name=produitid value=#{idproduit}  type="text" .form-control>
+                
+            <button .col-lg-2.col-lg-offset-3 type=submit .btn .btn-success>_{MsgValider}
+        
+
+                            
+                

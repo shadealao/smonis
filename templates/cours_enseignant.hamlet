@@ -1,0 +1,38 @@
+
+<div .col-lg-6.col-lg-offset-3>
+    <h3 .text-center>Attribution des créneaux aux enseignants
+    <article>
+        <h4>Liste des créneaux acifs
+        ^{showListCreneauxActive}
+    <article> 
+        <h4>Liste des cours non attribués
+        ^{showCoursNonAttribues}
+    $maybe Entity updatecoursid updatecours <- idcours
+        <article> Modifier les cours non attribués
+            <div>
+                <h4>^{showSpecifiqueCreneaux $ coursIdCreneaux updatecours}
+                <h4>^{showSpecifiqueEleve $ coursIdEleve updatecours}
+                <form method=post action=@{CoursEnseignantR} >
+                    <div hidden>
+                        <input name=idcours  type="text" value=#{toPathPiece updatecoursid}>
+                    <label for=enseignantsdisponibles>Choix de l'enseignant
+                    <select #enseignantsdisponibles name=enseignantsdisponibles value=yes>
+                        $forall Entity recordId record <- enseignantsdisponibles
+                            <option value=#{toPathPiece recordId}> #{enseignantNom record}
+                    <button .col-lg-2.col-lg-offset-10 type=submit .btn .btn-success>_{MsgValider}
+    <article> 
+        <h4>Prochains cours 
+        ^{showCoursNonPasseNonEffectue}
+    <article> 
+        <h4>Vérifier si les cours ont bien été effectués
+        ^{showCoursPasseNonEffectue}
+    <article> 
+        <h4>Historique des cours
+        ^{showCoursPasseEffectue} 
+                    
+
+
+    
+
+                            
+                

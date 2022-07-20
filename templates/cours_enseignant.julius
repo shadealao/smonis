@@ -1,0 +1,31 @@
+ 
+$(function() {
+    $(".courseffectue").click(function() {
+        var confirmed = confirm('Le cours a-t-il bien été effectué');
+        
+        if (confirmed) {
+            var idcoursvue = $(this).val();
+            if(idcoursvue){
+                $.ajax({
+                    url: '@{CoursEnseignantR}?idcours='+idcoursvue,
+                    type: 'PUT',
+                    dataType: "json",
+                    data: {idcours : idcoursvue },
+                    headers: {
+                        Accept: "application/json; charset=utf-8",
+                        "Content-Type": "application/json; charset=utf-8"
+                    },
+                    success: function (data) {
+                        //console.log(data);
+                        location.reload(); 
+                    },
+                    error: function (data) {
+                        console.log("Error update cours effectue. Error message:" + data.statusText);
+                    },
+                });
+            }
+        }
+   
+    });
+});
+

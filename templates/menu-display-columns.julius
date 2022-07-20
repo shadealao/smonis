@@ -1,0 +1,266 @@
+$(function() {
+
+    if ($.ipanema === undefined) {
+        $.ipanema = {};
+    }
+    if ($.panier === undefined) {
+        $.panier = {};
+    }
+
+    // ========================================================== //
+    // Call the server to save user
+    function sendUpdateUser(user) {
+        console.log ("UPDATING user with ajax...");
+        // Make an AJAX request to the server to update user
+        $.ajax({
+            url: '@{UserR}/' + user.id,
+            type: 'PUT',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            data: JSON.stringify(user),
+            success: function (data) {
+                console.log ("UPDATING user with ajax OK");
+            },
+            error: function (data) {
+                console.log("Error updating user " + user.id +  ". Error message:" + data.statusText);
+            }
+        });
+    }
+
+    // ========================================================================= //
+    // functions to show or hide columns in tables
+
+    // practical functions
+    function setFlexGrowForCol1And2_OnHide(hiddenColNumberClass, containerSelector) {
+        if (containerSelector === undefined) {
+            containerSelector = "body";
+        }
+        switch(hiddenColNumberClass) {
+            case "col-1":
+                $(containerSelector).find(".col-2").css("flex-grow", "1");
+                $(containerSelector).find(".col-1").css("flex-grow", "0");
+                break;
+            case "col-2":
+                $(containerSelector).find(".col-1").css("flex-grow", "1");
+                $(containerSelector).find(".col-2").css("flex-grow", "0");
+                break;
+        }
+    }
+    function setFlexGrowForCol1And2_OnShow(showedColNumberClass, containerSelector) {
+        if (containerSelector === undefined) {
+            containerSelector = "body";
+        }
+        switch(showedColNumberClass) {
+            case "col-1":
+                if ($(containerSelector).find(".col-2").css("display") !== "none") {
+                    $(containerSelector).find(".col-2").css("flex-grow", "1");
+                    $(containerSelector).find(".col-1").css("flex-grow", "0");
+                } else {
+                    $(containerSelector).find(".col-1").css("flex-grow", "1");
+                    $(containerSelector).find(".col-2").css("flex-grow", "0");
+                }
+                break;
+            case "col-2":
+                $(containerSelector).find(".col-1").css("flex-grow", "0");
+                $(containerSelector).find(".col-2").css("flex-grow", "1");
+                break;
+        }
+    }
+
+    // update the display status of the columns inside containerSelector according to dropdown with dropdownId
+    $.panier.updateDisplayedColumns = function (containerSelector, dropdownId) {
+        var menuJqUl = $("#"+dropdownId).siblings('[aria-labelledby="' + dropdownId + '"]');
+        menuJqUl.find("li").each(function(index, col) {
+                                                var showHideJqButton = $(this).children("button");
+                                                var colNumberClass = "col-" + (index+1);
+                                                if (showHideJqButton.hasClass("glyphicon-unchecked")) {
+                                                    $(containerSelector).find("."+colNumberClass).css("display", "none");
+                                                    // adjusting flex so we always have column 1 or 2 that is growing
+                                                    // console.log(colNumberClass + " : " + $("."+colNumberClass).css("flex-grow"));
+                                                    setFlexGrowForCol1And2_OnHide(colNumberClass, containerSelector);
+                                                } else {
+                                                    $(containerSelector).find("."+colNumberClass).css("display", "");
+                                                    // adjusting flex so we always have column 1 or 2 that is growing (if both are visible col-2 is the growing)
+                                                    setFlexGrowForCol1And2_OnShow(colNumberClass, containerSelector);
+                                                }
+                                            });
+    }
+
+    // function to build the menu to show or hide columns in tables
+    $.panier.buildMenuDisplayColumns = function (columnHeadersSelector, dropdownId, user, currentPage) {
+        // prepare hiddenColumns
+        var hiddenColumns = [];
+        try {
+            if (user.settings) {
+                userSettings = JSON.parse(user.settings);
+                if (userSettings[currentPage] && userSettings[currentPage].hiddenColumns) {
+                    hiddenColumns = userSettings[currentPage].hiddenColumns;
+                }
+            }
+        } catch (e) {
+            console.error("Parsing error of user settings:", e);
+        }
+        // build Html 
+        var columnHeadersJqDiv = $(columnHeadersSelector);
+        // add the col-menu to table-row of table-body for proper display
+        $(".table-body").children(".table-row")
+                            .prepend($('<div>').addClass("col-menu"));
+        // add the col-menu to the column-headers
+        var colMenuJqDiv = $('<div>')
+                                .addClass("col-menu dropdown")
+                                .attr({title: "show hide columns"})
+                                .prependTo(columnHeadersJqDiv);
+        var actionMenuDisplayColumnsJqButton = $('<button>')
+                .attr({
+                     type:"button",
+                     id:dropdownId,
+                     "data-toggle":"dropdown",
+                     "aria-haspopup":"true",
+                     "aria-expanded":"true"
+                })
+                .addClass("dropdown-toggle action-icon-inline glyphicon glyphicon-list")
+                .appendTo(colMenuJqDiv);
+        var menuDisplayColumnsJqUl = $('<ul>')
+                                            .addClass("menu-display-columns dropdown-menu")
+                                            .attr("aria-labelledby", dropdownId)
+                                            .appendTo(colMenuJqDiv);
+        // function that generate the function that creates one menuItem (per colef) // closure for hiddenArray
+        function generateCreateMenuItemFunction(hiddenArray) {
+            return function(index, col) {
+/*
+                // internal functions
+                function setFlexGrowForCol1And2_OnHide(hiddenColNumberClass) {
+                    switch(hiddenColNumberClass) {
+                        case "col-1":
+                            $(".col-2").css("flex-grow", "1");
+                            $(".col-1").css("flex-grow", "0");
+                            break;
+                        case "col-2":
+                            $(".col-1").css("flex-grow", "1");
+                            $(".col-2").css("flex-grow", "0");
+                            break;
+                    }
+                }
+                function setFlexGrowForCol1And2_OnShow(showedColNumberClass) {
+                    switch(showedColNumberClass) {
+                        case "col-1":
+                            if ($(".col-2").css("display") !== "none") {
+                                $(".col-2").css("flex-grow", "1");
+                                $(".col-1").css("flex-grow", "0");
+                            } else {
+                                $(".col-1").css("flex-grow", "1");
+                                $(".col-2").css("flex-grow", "0");
+                            }
+                            break;
+                        case "col-2":
+                            $(".col-1").css("flex-grow", "0");
+                            $(".col-2").css("flex-grow", "1");
+                            break;
+                    }
+                }
+*/
+                //
+                var colNumberClassPattern = /col[-][0-9]+/; // find the "col-234"
+                var colNumberClass = col.className.match(colNumberClassPattern)[0];
+                var colNumber = parseInt(colNumberClass.substring(4));
+                var colJqLi = $('<li>')
+                        .appendTo(menuDisplayColumnsJqUl);
+                var colJqSpan = $('<span>')
+                        .addClass("column-header")
+                        .html(col.innerHTML)
+                        .appendTo(colJqLi);
+                var colJqButton = $('<button>')
+                        .addClass("action-icon-inline glyphicon")
+                        .appendTo(colJqLi);
+                if (hiddenArray.indexOf(colNumber) !== -1) {
+                    // hidden
+                    colJqButton.addClass("glyphicon-unchecked");
+                    $("."+colNumberClass).css("display", "none");
+                    if (colNumber === 2) {
+                        setFlexGrowForCol1And2_OnHide("col-" + colNumber);
+                    }
+                } else {
+                    // visible
+                    colJqButton.addClass("glyphicon-check");
+                    $("."+colNumberClass).css("display", "");
+                    if (colNumber === 2) {
+                        setFlexGrowForCol1And2_OnShow("col-" + colNumber);
+                    }
+                }
+                colJqLi.bind("click", colNumberClass, function(event) {
+                                               var showHideJqButton = $(this).children("button");
+                                               showHideJqButton.toggleClass("glyphicon-check");
+                                               showHideJqButton.toggleClass("glyphicon-unchecked");
+                                               if (showHideJqButton.hasClass("glyphicon-unchecked")) {
+                                                   $("."+colNumberClass).css("display", "none");
+                                                   // adjusting flex so we always have column 1 or 2 that is growing
+                                                   // console.log(colNumberClass + " : " + $("."+colNumberClass).css("flex-grow"));
+                                                   setFlexGrowForCol1And2_OnHide(colNumberClass);
+                                               } else {
+                                                   $("."+colNumberClass).css("display", "");
+                                                   // adjusting flex so we always have column 1 or 2 that is growing (if both are visible col-2 is the growing)
+                                                   setFlexGrowForCol1And2_OnShow(colNumberClass);
+                                               }
+                                               event.stopPropagation();
+                                });
+                }
+        }
+        var createMenuItemFunction = generateCreateMenuItemFunction(hiddenColumns);
+        columnHeadersJqDiv.children(".colref").each(createMenuItemFunction);
+        // function that compute the hidden columns array
+        function computeHiddenColumns(columnHeadersSelector) {
+            var htmlHiddenCols = [];
+            var columnHeadersJqDiv = $(columnHeadersSelector);
+            columnHeadersJqDiv.children(".colref").each(function (index, col) {
+                if ($(this).css("display") === "none") {
+                    var colNumberClassPattern = /col[-][0-9]+/; // find the "col-234"
+                    var colNumberClass = col.className.match(colNumberClassPattern)[0];
+                    var colNumber = parseInt(colNumberClass.substring(4));
+                    htmlHiddenCols.push(colNumber);
+                }
+            });
+            return htmlHiddenCols;
+        }
+        // function that compute and save the user settings
+        function computeAndSaveUserPageSettings(user, currentPage, columnHeadersSelector) {
+            var computedHiddenCols = computeHiddenColumns(columnHeadersSelector);
+            var settings; 
+            try {
+                settings = JSON.parse(user.settings);
+                if (settings[currentPage] === undefined) {
+                    settings[currentPage] = {hiddenColumns: []};
+                } else if (settings[currentPage].hiddenColumns === undefined) {
+                    settings[currentPage].hiddenColumns = [];
+                }
+                settings[currentPage].hiddenColumns = computedHiddenCols;
+                user.settings = JSON.stringify(settings);
+                sendUpdateUser(user);
+            } catch (e) {
+                console.error("Parsing user settings error:", e);
+                console.error("WARNING user settings not saved.");
+            }
+        }
+        // events for saving the user settings
+        $('#'+dropdownId).click({user:user, currentPage:currentPage, columnHeadersSelector:columnHeadersSelector}, function(event) {
+            if ($('#'+dropdownId).data('open')) {
+                $('#'+dropdownId).data('open', false);
+                console.log("saving user settings.");
+                computeAndSaveUserPageSettings(event.data.user, event.data.currentPage, event.data.columnHeadersSelector);
+            } else {
+                $('#'+dropdownId).data('open', true);
+            }
+        });
+        $(document).click({user:user, currentPage:currentPage, columnHeadersSelector:columnHeadersSelector}, function(event) {
+            if ($('#'+dropdownId).data('open')) {
+                $('#'+dropdownId).data('open', false);
+                console.log("saving user settings.");
+                computeAndSaveUserPageSettings(event.data.user, event.data.currentPage, event.data.columnHeadersSelector);
+            }
+        });
+    }
+    // ======================================================== //
+
+});
+

@@ -1,0 +1,116 @@
+$(function() {
+
+    if ($.ipanema === undefined) {
+        $.ipanema = {};
+    }
+    if ($.listeproduit === undefined) {
+        $.listeproduit = [];
+    }
+    if ($.reslisteproduit === undefined) {
+        $.reslisteproduit = [];
+    }
+
+    if ($.panier === undefined) {
+        $.panier = {};
+    }
+
+    // ======================================================== //
+
+    // function Promise to call the server and get data from the store session
+    $.panier.requestGetStoreSession = function(key) {
+        return new Promise((resolve, reject) => {
+            console.log ("RETRIEVING " + key + " from Session with ajax...");
+            // Make an AJAX request to the server to get the data in Session
+            $.ajax({
+                url: '@{StoreSessionR}?key=' + key,
+                type: 'GET',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                success: function (data) {
+                    console.log("RETRIEVING " + key + " from Session with ajax OK");
+                    resolve(data);
+                },
+                error: function (data) {
+                    console.log("Error RETRIEVING " + key + " from Session. Error message:" + data.statusText);
+                    reject(data);
+                }
+            });
+        })
+    }
+
+    $.panier.getval = function(key){
+       car = new Promise((resolve, reject) => {
+            console.log ("RETRIEVING " + key + " from Session with ajax...");
+            // Make an AJAX request to the server to get the data in Session
+            $.ajax({
+                url: '@{StoreSessionR}?key=' + key,
+                type: 'GET',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                success: function (data) {
+                    console.log("RETRIEVING " + key + " from Session with ajax OK");
+                    resolve(data);
+                    return data
+                },
+                error: function (data) {
+                    console.log("Error RETRIEVING " + key + " from Session. Error message:" + data.statusText);
+                    reject(data);
+                }
+            });
+        })
+    }
+    // function Promise to call the server and put data in the store session
+    $.panier.requestPutStoreSession = function(key, obj) {
+        return new Promise((resolve, reject) => {
+            console.log ("STORING " + key + " in Session with ajax...");
+            // Make an AJAX request to the server to store the obj in Session
+            $.ajax({
+                url: '@{StoreSessionR}?key=' + key,
+                type: 'PUT',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                data: JSON.stringify(obj),
+                success: function (data) {
+                    console.log ("STORING " + key + " in Session with ajax OK");
+                    resolve(data);
+                },
+                error: function (data) {
+                    console.log("Error STORING " + key + " in Session. Error message:" + data.statusText);
+                    reject(data);
+                }
+            });
+        })
+    }
+
+    // function Promise to call the server and delete data in the store session
+    $.panier.requestDeleteStoreSession = function(key) {
+        return new Promise((resolve, reject) => {
+            console.log ("DELETING " + key + " in Session with ajax...");
+            // Make an AJAX request to the server to delete obj for in Session
+            $.ajax({
+                url: '@{StoreSessionR}?key=' + key,
+                type: 'DELETE',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                success: function (data) {
+                    console.log ("DELETING " + key + " in Session with ajax OK");
+                    resolve(data);
+                },
+                error: function (data) {
+                    console.log("Error DELETING " + key + " in Session. Error message:" + data.statusText);
+                    reject(data);
+                }
+            });
+        })
+    }
+
+});
+

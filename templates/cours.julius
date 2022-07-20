@@ -1,0 +1,27 @@
+$(function() {
+
+    $(".creneauxactiveeleve").click(function() {
+        var confirmed = confirm('Voulez-vous réserver ce creneaux ?');
+        var idcreneraux = $(this).attr("identcreneaux")
+        if (confirmed) {
+            alert("IDent creneaux => "+idcreneraux);
+            $.ajax({
+                url: '@{CoursR}?table=eleve&idcreneraux=' + idcreneraux,
+                type: 'PUT',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                success: function (data) {
+                    //console.log(data);
+                    location.reload(); ;
+                },
+                error: function (data) {
+                    console.log("Error deleting user " + userId + ". Error message:" + data.statusText);
+                },
+            });
+        }
+   
+    });
+});
+

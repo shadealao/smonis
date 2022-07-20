@@ -1,0 +1,248 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.34.4.
+--
+-- see: https://github.com/sol/hpack
+
+name:           autoecole-smoni
+version:        0.0.0
+build-type:     Simple
+
+flag dev
+  description: Turn on development settings, like auto-reload templates.
+  manual: False
+  default: False
+
+flag library-only
+  description: Build for use with "yesod devel"
+  manual: False
+  default: False
+
+library
+  exposed-modules:
+      Application
+      Foundation
+      Handler.Common
+      Handler.Cours
+      Handler.CoursEnseignant
+      Handler.CreateUser
+      Handler.Creneaux
+      Handler.EditUser
+      Handler.Home
+      Handler.Panier
+      Handler.Produit
+      Handler.Profile
+      Handler.Shared
+      Handler.StoreSession
+      Handler.Tarif
+      Handler.User
+      Import
+      Import.NoFoundation
+      Model
+      Settings
+      Settings.StaticFiles
+      Translate
+  other-modules:
+      Paths_autoecole_smoni
+  hs-source-dirs:
+      src
+  default-extensions:
+      DerivingStrategies
+      TypeApplications
+      QuasiQuotes
+      TypeFamilies
+      MultiParamTypeClasses
+      TemplateHaskell
+      OverloadedStrings
+      NoImplicitPrelude
+      EmptyDataDecls
+      FlexibleContexts
+      GADTs
+      GeneralizedNewtypeDeriving
+      ViewPatterns
+  build-depends:
+      aeson ==1.4.*
+    , base >=4.9.1.0 && <5
+    , base64-bytestring >=1.0 && <2.0
+    , blaze-html
+    , bytestring ==0.10.*
+    , case-insensitive
+    , classy-prelude ==1.5.*
+    , classy-prelude-conduit ==1.5.*
+    , classy-prelude-yesod ==1.5.*
+    , conduit >=1.0 && <2.0
+    , containers
+    , data-default
+    , directory >=1.1 && <1.4
+    , fast-logger >=2.2 && <2.5
+    , file-embed
+    , filepath
+    , foreign-store
+    , hjsmin >=0.1 && <0.3
+    , http-client-tls ==0.3.*
+    , http-conduit ==2.3.*
+    , http-types
+    , mime-mail
+    , monad-control >=0.3 && <1.1
+    , monad-logger ==0.3.*
+    , mtl
+    , persistent >=2.9 && <2.11
+    , persistent-postgresql >=2.9 && <2.11
+    , persistent-template >=2.5 && <2.9
+    , safe
+    , shakespeare ==2.0.*
+    , template-haskell
+    , text >=0.11 && <2.0
+    , time
+    , unliftio-core
+    , unordered-containers
+    , vector
+    , wai
+    , wai-extra ==3.0.*
+    , wai-logger >=2.2 && <2.4
+    , warp >=3.0 && <3.3
+    , yaml ==0.11.*
+    , yesod ==1.6.*
+    , yesod-auth ==1.6.*
+    , yesod-core ==1.6.*
+    , yesod-form ==1.6.*
+    , yesod-static ==1.6.*
+  if (flag(dev)) || (flag(library-only))
+    ghc-options: -Wall -fwarn-tabs -O0
+    cpp-options: -DDEVELOPMENT
+  else
+    ghc-options: -Wall -fwarn-tabs -O2
+  default-language: Haskell2010
+
+executable autoecole-smoni
+  main-is: main.hs
+  other-modules:
+      DevelMain
+      Paths_autoecole_smoni
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson ==1.4.*
+    , autoecole-smoni
+    , base >=4.9.1.0 && <5
+    , base64-bytestring >=1.0 && <2.0
+    , blaze-html
+    , bytestring ==0.10.*
+    , case-insensitive
+    , classy-prelude ==1.5.*
+    , classy-prelude-conduit ==1.5.*
+    , classy-prelude-yesod ==1.5.*
+    , conduit >=1.0 && <2.0
+    , containers
+    , data-default
+    , directory >=1.1 && <1.4
+    , fast-logger >=2.2 && <2.5
+    , file-embed
+    , filepath
+    , foreign-store
+    , hjsmin >=0.1 && <0.3
+    , http-client-tls ==0.3.*
+    , http-conduit ==2.3.*
+    , http-types
+    , mime-mail
+    , monad-control >=0.3 && <1.1
+    , monad-logger ==0.3.*
+    , mtl
+    , persistent >=2.9 && <2.11
+    , persistent-postgresql >=2.9 && <2.11
+    , persistent-template >=2.5 && <2.9
+    , safe
+    , shakespeare ==2.0.*
+    , template-haskell
+    , text >=0.11 && <2.0
+    , time
+    , unliftio-core
+    , unordered-containers
+    , vector
+    , wai
+    , wai-extra ==3.0.*
+    , wai-logger >=2.2 && <2.4
+    , warp >=3.0 && <3.3
+    , yaml ==0.11.*
+    , yesod ==1.6.*
+    , yesod-auth ==1.6.*
+    , yesod-core ==1.6.*
+    , yesod-form ==1.6.*
+    , yesod-static ==1.6.*
+  if flag(library-only)
+    buildable: False
+  default-language: Haskell2010
+
+test-suite autoecole-smoni-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Handler.CommentSpec
+      Handler.CommonSpec
+      Handler.CoursEnseignantSpec
+      Handler.CoursSpec
+      Handler.CreneauxSpec
+      Handler.GestionComptesSpec
+      Handler.HomeSpec
+      Handler.PanierSpec
+      Handler.ProduitSpec
+      Handler.ProfileSpec
+      Handler.TarifSpec
+      TestImport
+      Paths_autoecole_smoni
+  hs-source-dirs:
+      test
+  ghc-options: -Wall
+  build-depends:
+      aeson ==1.4.*
+    , autoecole-smoni
+    , base >=4.9.1.0 && <5
+    , base64-bytestring >=1.0 && <2.0
+    , blaze-html
+    , bytestring ==0.10.*
+    , case-insensitive
+    , classy-prelude ==1.5.*
+    , classy-prelude-conduit ==1.5.*
+    , classy-prelude-yesod ==1.5.*
+    , conduit >=1.0 && <2.0
+    , containers
+    , data-default
+    , directory >=1.1 && <1.4
+    , fast-logger >=2.2 && <2.5
+    , file-embed
+    , filepath
+    , foreign-store
+    , hjsmin >=0.1 && <0.3
+    , hspec >=2.0.0
+    , http-client-tls ==0.3.*
+    , http-conduit ==2.3.*
+    , http-types
+    , microlens
+    , mime-mail
+    , monad-control >=0.3 && <1.1
+    , monad-logger ==0.3.*
+    , mtl
+    , persistent >=2.9 && <2.11
+    , persistent-postgresql >=2.9 && <2.11
+    , persistent-template >=2.5 && <2.9
+    , safe
+    , shakespeare ==2.0.*
+    , template-haskell
+    , text >=0.11 && <2.0
+    , time
+    , unliftio-core
+    , unordered-containers
+    , vector
+    , wai
+    , wai-extra ==3.0.*
+    , wai-logger >=2.2 && <2.4
+    , warp >=3.0 && <3.3
+    , yaml ==0.11.*
+    , yesod ==1.6.*
+    , yesod-auth ==1.6.*
+    , yesod-core ==1.6.*
+    , yesod-form ==1.6.*
+    , yesod-static ==1.6.*
+    , yesod-test
+  default-language: Haskell2010

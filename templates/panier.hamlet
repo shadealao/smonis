@@ -1,0 +1,25 @@
+
+<div .col-lg-6.col-lg-offset-3>
+    <h3 .text-center>Mon panier
+    <div #solution>
+    <div >
+        <table .card-body.col-lg-12 .table>
+            <thead .thead-dark>
+                <th>Quantité
+                <th>Produit
+                <th>Prix
+                <th>
+            <tbody #listeproduit>
+            <tfoot>
+                <tr #total>
+                    <th scope="row">Total
+                    <td>
+        
+                    
+
+                    
+
+        
+
+                            
+                

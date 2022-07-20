@@ -1,0 +1,280 @@
+
+<!-- Modal proprietaire -->
+
+<div class="modal fade" id="tableProprietaire" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form  method=post action=@{HomeR} enctype=#{enctype2}>
+                <div class="modal-header">
+                    <div hidden >
+                        <input class="oeuvreidentifiant2" name=oeuvreidentifiant2 type="text" .form-control>
+                        <input class="page" name=page type="text" .form-control>
+                    <h5 class="modal-title" .text-center>_{MsgTitreProprietaire} 
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;
+                        
+                <div class="modal-body">
+                    ^{widget2}
+                <div class="modal-footer">
+                    <button type=submit #buttonaddproprietaire name=action value=addproprietaire  class="btn btn-default">_{MsgTitreProprietaire}
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">_{MsgFermer}
+
+
+<!-- FIN Modal proprietaire -->
+
+
+<!-- Modal sources -->
+<div class="modal fade" id="tableSource" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form  method=post action=@{HomeR} enctype=#{enctype1}>
+                <div class="modal-header">
+                    <div hidden >
+                        <input class="oeuvreidentifiant2" name=oeuvreidentifiant2 type="text" .form-control>
+                        <input class="page" name=page type="text" .form-control>
+                    <h5 class="modal-title" .text-center>_{MsgTitreSource} 
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;
+                        
+                <div class="modal-body">
+                    ^{widget1}
+                <div class="modal-footer">
+                    <button type=submit name=action value=addsources  class="btn btn-default">_{MsgTitreSource} 
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">_{MsgFermer}
+
+<!-- FIN Modal sources -->
+
+
+
+<!-- Modal precisionsource -->
+<div class="modal fade" id="tablePrecisionSource" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form  method=post action=@{HomeR} enctype=#{enctype14}>
+                <div class="modal-header">
+                    <div hidden >
+                        <input class="oeuvreidentifiant2" name=oeuvreidentifiant2 type="text" .form-control>
+                        <input class="page" name=page type="text" .form-control>
+                    <h5 class="modal-title" .text-center>_{MsgPrecisionSource}
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;
+                        
+                <div class="modal-body">
+                    ^{widget14}
+                <div class="modal-footer">
+                    <button type=submit name=action value=addprecisionsource  class="btn btn-default">_{MsgValider}
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">_{MsgFermer}
+
+<!-- FIN Modal precisionsource -->
+
+
+                    
+<!-- Modal auteur -->
+<div class="modal fade" id="tableAuteur" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method=post action=@{HomeR} enctype=#{enctype7}>
+                <div class="modal-header">
+                    <div hidden >
+                        <input class="oeuvreidentifiant2" name=oeuvreidentifiant2 type="text" .form-control>
+                        <input class="page" name=page type="text" .form-control>
+                    <h5 class="modal-title" .text-center>_{MsgAuteur} 
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;
+                        
+                <div class="modal-body">
+                    ^{widget7}
+                <div class="modal-footer">
+                    <button type=submit name=action value=addauteur  class="btn btn-default">_{MsgAuteur} 
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">_{MsgFermer}
+
+<!-- FIN Modal auteur -->
+
+
+<!-- Modal emplacement -->
+<div class="modal fade" id="tableEmplacement" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method=post action=@{HomeR} enctype=#{enctype3}>
+                <div class="modal-header">
+                    <div hidden >
+                        <input class="oeuvreidentifiant2" name=oeuvreidentifiant2 type="text" .form-control>
+                        <input class="page" name=page type="text" .form-control>
+                        <input class="idnomproprietaire" name=idnomproprietaire type="text" .form-control>
+                    <h5 class="modal-title" .text-center>_{MsgTitreEmplacement}
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;
+                        
+                <div class="modal-body">
+                    ^{widget3}
+                <div class="modal-footer">
+                    <button type=submit name=action value=addemplacement  class="btn btn-default">_{MsgTitreEmplacement}
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">_{MsgFermer}
+
+<!-- FIN Modal emplacement -->
+
+
+<!-- Modal TypeIntervention -->
+<div class="modal fade" id="tableTypeIntervention" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method=post action=@{HomeR} enctype=#{enctype6}>
+                <div class="modal-header">
+                    <div hidden >
+                        <input class="oeuvreidentifiant2" name=oeuvreidentifiant2 type="text" .form-control>
+                        <input class="page" name=page type="text" .form-control>
+                    <h5 class="modal-title" .text-center>_{MsgTypeIntervention}
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;
+                        
+                <div class="modal-body">
+                    ^{widget6}
+                <div class="modal-footer">
+                    <button type=submit name=action value=addtypeIntervention  class="btn btn-default">_{MsgValider}
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">_{MsgFermer}
+
+<!-- FIN Modal TypeIntervention -->
+                    
+<!-- Modal Fournisseur -->
+<div class="modal fade" id="tableFournisseur" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method=post action=@{HomeR} enctype=#{enctype4}>
+                <div class="modal-header">
+                    <div hidden >
+                        <input class="oeuvreidentifiant2" name=oeuvreidentifiant2 type="text" .form-control>
+                        <input class="page" name=page type="text" .form-control>
+                    <h5 class="modal-title" .text-center>_{MsgTitreFournisseur} 
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;
+                        
+                <div class="modal-body">
+                    ^{widget4}
+                <div class="modal-footer">
+                    <button type=submit name=action value=addfournisseur  class="btn btn-default">_{MsgTitreFournisseur}
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">_{MsgFermer}
+
+<!-- FIN Modal Fournisseur -->
+    
+                    
+            
+            
+<!-- Modal Oeuvre -->
+<div class="modal fade" id="tableOeuvre" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method=post action=@{HomeR} enctype=#{enctype5}>
+                <div class="modal-header">
+                    <div hidden >
+                        <input class="oeuvreidentifiant2" name=oeuvreidentifiant2 type="text" .form-control>
+                        <input class="page" name=page type="text" .form-control>
+                    <h5 class="modal-title" .text-center>_{MsgTitreOeuvre} 
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;
+                        
+                <div class="modal-body">
+                    ^{widget5}
+                    <label>_{MsgFormat} : 
+                    <div .form-group>
+                        <div .col-lg-6>
+                            <label for=largeur>_{MsgLargeur} (cm) : 
+                            <input id=largeur name=largeur type="number" step="0.01"  .form-control>
+                        <div .col-lg-6>
+                            <label for=hauteur>_{MsgHauteur} (cm) : 
+                            <input id=hauteur name=hauteur type="number" step="0.01" .form-control>
+
+                <div class="modal-footer">
+                    <button type=submit name=action value=addoeuvre  class="btn btn-default">_{MsgTitreOeuvre}
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">_{MsgFermer}
+
+<!-- FIN Modal Oeuvre -->
+
+
+<!-- Modal Type Alteration  -->
+<div class="modal fade" id="tableTypeAlteration" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method=post action=@{HomeR} enctype=#{enctype8}>
+                <div class="modal-header">
+                    <div hidden >
+                        <input class="oeuvreidentifiant2" name=oeuvreidentifiant2 type="text" .form-control>
+                        <input class="page" name=page type="text" .form-control>
+                    <h5 class="modal-title" .text-center>_{MsgTypeAlteration}
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;
+                        
+                <div class="modal-body">
+                    ^{widget8}
+                <div class="modal-footer">
+                    <button type=submit name=action value=addtypealteration class="btn btn-default">_{MsgValider}
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">_{MsgFermer}
+
+<!-- FIN Modal Type Alteration  -->
+
+
+<!-- Modal Materiaux  -->
+<div class="modal fade" id="tableMateriaux" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method=post action=@{HomeR} enctype=#{enctype11}>
+                <div class="modal-header">
+                    <div hidden >
+                        <input class="oeuvreidentifiant2" name=oeuvreidentifiant2 type="text" .form-control>
+                        <input class="page" name=page type="text" .form-control>
+                    <h5 class="modal-title" .text-center>_{MsgMateriaux}
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;
+                        
+                <div class="modal-body">
+                    ^{widget11}
+                <div class="modal-footer">
+                    <button type=submit name=action value=addmateriaux class="btn btn-default">_{MsgValider}
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">_{MsgFermer}
+
+<!-- FIN Modal Materiaux -->
+
+
+
+<!-- Modal Vernis  -->
+<div class="modal fade" id="tableVernis" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method=post action=@{HomeR} enctype=#{enctype9}>
+                <div class="modal-header">
+                    <div hidden >
+                        <input class="oeuvreidentifiant2" name=oeuvreidentifiant2 type="text" .form-control>
+                        <input class="page" name=page type="text" .form-control>
+                    <h5 class="modal-title" .text-center>_{MsgVernis}
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;
+                        
+                <div class="modal-body">
+                    ^{widget9}
+                <div class="modal-footer">
+                    <button type=submit name=action value=addvernis class="btn btn-default">_{MsgValider}
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">_{MsgFermer}
+
+<!-- FIN Modal Vernis -->
+
+
+<!-- Modal Vernis  -->
+<div class="modal fade" id="tableOutil" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method=post action=@{HomeR} enctype=#{enctype10}>
+                <div class="modal-header">
+                    <div hidden >
+                        <input class="oeuvreidentifiant2" name=oeuvreidentifiant2 type="text" .form-control>
+                        <input class="page" name=page type="text" .form-control>
+                    <h5 class="modal-title" .text-center>_{MsgOutil}
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;
+                        
+                <div class="modal-body">
+                    ^{widget10}
+                <div class="modal-footer">
+                    <button type=submit name=action value=addoutil class="btn btn-default">_{MsgValider}
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">_{MsgFermer}
+
+<!-- FIN Modal Outil -->
+

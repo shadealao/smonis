@@ -1,0 +1,4 @@
+console.log("SMONI Homepage julius loaded");
+
+    //Faire disparaitre les alert 
+    $(".alert-info").hide(10000)
